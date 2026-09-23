@@ -20,7 +20,9 @@
     --accent-ink:#0B3FB4;
     --teal:#0FA98C;
     --amber:#E8962C;
+    --amber-bg:#FDF1E1;
     --danger:#D64545;
+    --danger-bg:#FBE7E7;
     --text-0:#12182A;
     --text-1:#4A5468;
     --text-2:#8792A6;
@@ -35,230 +37,148 @@
   *{box-sizing:border-box;}
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --ink-900:#EAF0FF;
-      --ink-700:#C9D5F0;
-      --ink-500:#93A2C4;
-      --paper-0:#0B0F1A;
-      --paper-1:#141A29;
-      --paper-2:#1C2436;
-      --line:#26304A;
-      --text-0:#EEF2FA;
-      --text-1:#AAB4CC;
-      --text-2:#7D889F;
+      --ink-900:#EAF0FF; --ink-700:#C9D5F0; --ink-500:#93A2C4;
+      --paper-0:#0B0F1A; --paper-1:#141A29; --paper-2:#1C2436; --line:#26304A;
+      --text-0:#EEF2FA; --text-1:#AAB4CC; --text-2:#7D889F;
+      --amber-bg:#3A2C10; --danger-bg:#3A1414;
       --shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
   }
   :root[data-theme="dark"]{
-    --ink-900:#EAF0FF;
-    --ink-700:#C9D5F0;
-    --ink-500:#93A2C4;
-    --paper-0:#0B0F1A;
-    --paper-1:#141A29;
-    --paper-2:#1C2436;
-    --line:#26304A;
-    --text-0:#EEF2FA;
-    --text-1:#AAB4CC;
-    --text-2:#7D889F;
+    --ink-900:#EAF0FF; --ink-700:#C9D5F0; --ink-500:#93A2C4;
+    --paper-0:#0B0F1A; --paper-1:#141A29; --paper-2:#1C2436; --line:#26304A;
+    --text-0:#EEF2FA; --text-1:#AAB4CC; --text-2:#7D889F;
+    --amber-bg:#3A2C10; --danger-bg:#3A1414;
     --shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
-  html,body{
-    height:100%;
-    margin:0;
-    background:var(--paper-0);
-    color:var(--text-0);
+  html,body{ height:100%; margin:0; background:var(--paper-0); color:var(--text-0);
     font-family:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    -webkit-font-smoothing:antialiased;
-    overscroll-behavior:none;
-  }
+    -webkit-font-smoothing:antialiased; overscroll-behavior:none; }
   html{scroll-padding-top: env(safe-area-inset-top, 0px);}
   button{font-family:inherit;}
-  #app{
-    height:100%;
-    max-width:560px;
-    margin:0 auto;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-    background:var(--paper-0);
-  }
+  #app{ height:100%; max-width:560px; margin:0 auto; display:flex; flex-direction:column; position:relative; background:var(--paper-0); }
 
-  /* ---------- Topbar ---------- */
-  .topbar{
-    position:sticky; top:0; z-index:20;
-    padding: calc(14px + env(safe-area-inset-top,0px)) 18px 12px;
-    background:var(--paper-0);
-    display:flex; align-items:center; gap:12px;
-    border-bottom:1px solid var(--line);
-  }
-  .mark{
-    width:38px;height:38px;border-radius:11px;flex:none;
-    background:linear-gradient(155deg, var(--accent), var(--accent-ink));
-    display:flex;align-items:center;justify-content:center;
-    color:#fff;font-weight:800;font-size:17px;
-    box-shadow: 0 4px 10px rgba(47,111,237,0.35);
-  }
+  .topbar{ position:sticky; top:0; z-index:20; padding: calc(14px + env(safe-area-inset-top,0px)) 18px 12px;
+    background:var(--paper-0); display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--line); }
+  .mark{ width:38px;height:38px;border-radius:11px;flex:none; background:linear-gradient(155deg, var(--accent), var(--accent-ink));
+    display:flex;align-items:center;justify-content:center; color:#fff;font-weight:800;font-size:17px;
+    box-shadow: 0 4px 10px rgba(47,111,237,0.35); }
   .topbar h1{font-size:16px;font-weight:700;margin:0;color:var(--text-0);line-height:1.2;}
   .topbar p{margin:0;font-size:12px;color:var(--text-2);font-weight:500;}
   .topbar .spacer{flex:1;}
-  .icon-btn{
-    width:38px;height:38px;border-radius:11px;border:1px solid var(--line);
-    background:var(--paper-1); display:flex;align-items:center;justify-content:center;
-    color:var(--text-1);
-  }
+  .icon-btn{ width:38px;height:38px;border-radius:11px;border:1px solid var(--line);
+    background:var(--paper-1); display:flex;align-items:center;justify-content:center; color:var(--text-1); flex:none; }
 
-  /* ---------- Views ---------- */
-  main.view{
-    display:none;
-    flex:1;
-    overflow-y:auto;
-    padding: 14px 16px 130px;
-  }
+  main.view{ display:none; flex:1; overflow-y:auto; padding: 14px 16px 130px; }
   main.view.active{display:block;}
 
   .search-row{display:flex; gap:8px; margin-bottom:12px;}
-  .search-box{
-    flex:1; display:flex; align-items:center; gap:8px;
-    background:var(--paper-1); border:1px solid var(--line); border-radius:var(--radius-md);
-    padding:10px 12px;
-  }
-  .search-box input{
-    border:none;outline:none;background:transparent;flex:1;font-size:14px;color:var(--text-0);
-    font-family:inherit;
-  }
+  .search-box{ flex:1; display:flex; align-items:center; gap:8px;
+    background:var(--paper-1); border:1px solid var(--line); border-radius:var(--radius-md); padding:10px 12px; }
+  .search-box input{ border:none;outline:none;background:transparent;flex:1;font-size:14px;color:var(--text-0); font-family:inherit; }
   .search-box svg{flex:none;color:var(--text-2);}
+  .scan-btn{ width:42px;height:42px;border-radius:var(--radius-md); border:1px solid var(--line);
+    background:var(--ink-700); color:#fff; display:flex; align-items:center; justify-content:center; flex:none; }
 
   .chips{display:flex; gap:8px; overflow-x:auto; padding-bottom:14px; margin-bottom:2px;}
-  .chip{
-    flex:none; padding:8px 14px; border-radius:999px; font-size:13px; font-weight:600;
-    background:var(--paper-1); color:var(--text-1); border:1px solid var(--line); white-space:nowrap;
-  }
+  .chip{ flex:none; padding:8px 14px; border-radius:999px; font-size:13px; font-weight:600;
+    background:var(--paper-1); color:var(--text-1); border:1px solid var(--line); white-space:nowrap; }
   .chip.active{background:var(--ink-700); color:#fff; border-color:var(--ink-700);}
 
-  .grid{
-    display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;
+  .lowstock-banner{
+    display:flex; align-items:center; gap:10px; background:var(--amber-bg); border:1px solid var(--amber);
+    border-radius:var(--radius-md); padding:10px 12px; margin-bottom:12px; font-size:12.5px; font-weight:600; color:var(--amber);
   }
-  .pcard{
-    background:var(--paper-1); border:1px solid var(--line); border-radius:var(--radius-md);
-    padding:12px; text-align:left; display:flex; flex-direction:column; gap:6px; position:relative;
-    min-height:104px;
-  }
+  .lowstock-banner svg{flex:none;}
+  .lowstock-banner span{flex:1; color:var(--text-0);}
+  .lowstock-banner b{color:var(--amber);}
+
+  .grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
+  .pcard{ background:var(--paper-1); border:1px solid var(--line); border-radius:var(--radius-md);
+    padding:12px; text-align:left; display:flex; flex-direction:column; gap:6px; position:relative; min-height:104px; }
   .pcard:active{transform:scale(0.98);}
-  .pcard .cat-dot{
-    width:8px;height:8px;border-radius:50%; position:absolute; top:14px; right:14px;
-  }
+  .pcard .cat-dot{ width:8px;height:8px;border-radius:50%; position:absolute; top:14px; right:14px; }
   .pcard .pname{font-size:13.5px; font-weight:700; color:var(--text-0); line-height:1.25; padding-right:14px;}
   .pcard .pmeta{font-size:11px; color:var(--text-2); font-weight:500;}
   .pcard .pprice{font-size:14px; font-weight:800; color:var(--accent-ink); margin-top:auto;}
-  :root[data-theme="dark"] .pcard .pprice, @media (prefers-color-scheme:dark){ .pcard .pprice{color:#7FA8FF;} }
+  @media (prefers-color-scheme:dark){ .pcard .pprice{color:#7FA8FF;} }
+  :root[data-theme="dark"] .pcard .pprice{color:#7FA8FF;}
   .pcard.disabled{opacity:0.4;}
-  .pcard .stockbadge{font-size:10px; font-weight:700; color:var(--danger);}
+  .badge-out{font-size:10px; font-weight:700; color:var(--danger);}
+  .badge-low{font-size:10px; font-weight:700; color:var(--amber);}
 
-  .empty{
-    text-align:center; padding:60px 20px; color:var(--text-2);
-  }
+  .empty{ text-align:center; padding:60px 20px; color:var(--text-2); }
   .empty h3{color:var(--text-1); font-size:15px; margin:10px 0 4px;}
   .empty p{font-size:13px; margin:0;}
 
-  /* ---------- Cart bar ---------- */
-  #cartbar{
-    position:fixed; left:0; right:0; bottom:calc(70px + env(safe-area-inset-bottom,0px));
-    max-width:560px; margin:0 auto; padding:0 16px; z-index:15;
-    display:none;
-  }
+  #cartbar{ position:fixed; left:0; right:0; bottom:calc(70px + env(safe-area-inset-bottom,0px));
+    max-width:560px; margin:0 auto; padding:0 16px; z-index:15; display:none; }
   #cartbar.show{display:block;}
-  #cartbar .inner{
-    background:var(--ink-700); color:#fff; border-radius:16px; padding:12px 16px;
-    display:flex; align-items:center; gap:12px; box-shadow:var(--shadow);
-  }
-  #cartbar .badge{
-    background:rgba(255,255,255,0.18); width:30px;height:30px;border-radius:9px;
-    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px; flex:none;
-  }
+  #cartbar .inner{ background:var(--ink-700); color:#fff; border-radius:16px; padding:12px 16px;
+    display:flex; align-items:center; gap:12px; box-shadow:var(--shadow); }
+  #cartbar .badge{ background:rgba(255,255,255,0.18); width:30px;height:30px;border-radius:9px;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px; flex:none; }
   #cartbar .info{flex:1; min-width:0;}
   #cartbar .info .t1{font-size:11px; opacity:0.75; font-weight:500;}
   #cartbar .info .t2{font-size:15px; font-weight:800;}
-  #cartbar .cta{
-    background:#fff; color:var(--ink-700); border:none; border-radius:10px; padding:9px 14px;
-    font-weight:700; font-size:13px;
-  }
+  #cartbar .cta{ background:#fff; color:var(--ink-700); border:none; border-radius:10px; padding:9px 14px; font-weight:700; font-size:13px; }
 
-  /* ---------- Bottom nav ---------- */
-  .bottomnav{
-    position:sticky; bottom:0; z-index:20;
-    display:flex; background:var(--paper-1); border-top:1px solid var(--line);
-    padding: 8px 6px calc(8px + env(safe-area-inset-bottom,0px));
-  }
-  .navbtn{
-    flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
-    background:none; border:none; color:var(--text-2); padding:6px 0; border-radius:10px;
-  }
+  .bottomnav{ position:sticky; bottom:0; z-index:20; display:flex; background:var(--paper-1); border-top:1px solid var(--line);
+    padding: 8px 6px calc(8px + env(safe-area-inset-bottom,0px)); }
+  .navbtn{ flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; background:none; border:none;
+    color:var(--text-2); padding:6px 0; border-radius:10px; position:relative; }
   .navbtn svg{width:21px;height:21px;}
   .navbtn span{font-size:10.5px; font-weight:600;}
   .navbtn.active{color:var(--accent);}
+  .navdot{ position:absolute; top:2px; right:26%; width:7px; height:7px; border-radius:50%; background:var(--amber); }
 
-  /* ---------- Sheets (modals) ---------- */
-  .scrim{
-    position:fixed; inset:0; background:rgba(10,14,24,0.45); z-index:30; opacity:0; pointer-events:none;
-    transition:opacity .2s ease;
-  }
+  .scrim{ position:fixed; inset:0; background:rgba(10,14,24,0.45); z-index:30; opacity:0; pointer-events:none; transition:opacity .2s ease; }
   .scrim.show{opacity:1; pointer-events:auto;}
-  .sheet{
-    position:fixed; left:0; right:0; bottom:0; max-width:560px; margin:0 auto; z-index:31;
+  .sheet{ position:fixed; left:0; right:0; bottom:0; max-width:560px; margin:0 auto; z-index:31;
     background:var(--paper-1); border-radius:22px 22px 0 0; box-shadow:0 -8px 30px rgba(0,0,0,0.2);
     transform:translateY(105%); transition:transform .28s cubic-bezier(.32,.72,0,1);
-    max-height:88vh; display:flex; flex-direction:column;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
+    max-height:88vh; display:flex; flex-direction:column; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .sheet.show{transform:translateY(0);}
   .sheet-handle{width:36px;height:4px;background:var(--line); border-radius:99px; margin:10px auto 4px;}
-  .sheet-head{
-    display:flex; align-items:center; justify-content:space-between; padding:10px 18px 4px;
-  }
+  .sheet-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 18px 4px; }
   .sheet-head h2{font-size:16px; margin:0; font-weight:700;}
   .sheet-body{overflow-y:auto; padding:6px 18px 18px;}
   .sheet-close{background:var(--paper-2); border:none; width:30px;height:30px;border-radius:9px; color:var(--text-1);}
 
-  .cartline{
-    display:flex; align-items:center; gap:10px; padding:12px 0; border-bottom:1px solid var(--line);
-  }
+  .cartline{ display:flex; align-items:center; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); }
   .cartline .cn{flex:1; min-width:0;}
   .cartline .cn .nm{font-size:13.5px; font-weight:700;}
   .cartline .cn .pr{font-size:12px; color:var(--text-2); margin-top:2px;}
   .qty{display:flex; align-items:center; gap:8px; flex:none;}
-  .qty button{
-    width:26px;height:26px;border-radius:8px; border:1px solid var(--line); background:var(--paper-2);
-    color:var(--text-0); font-size:15px; font-weight:700; line-height:1;
-  }
+  .qty button{ width:26px;height:26px;border-radius:8px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--text-0); font-size:15px; font-weight:700; line-height:1; }
   .qty span{min-width:18px; text-align:center; font-weight:700; font-size:13.5px;}
   .rowline{display:flex; justify-content:space-between; align-items:center; padding:8px 0; font-size:13.5px;}
   .rowline.total{font-size:16px; font-weight:800; border-top:1px solid var(--line); padding-top:12px; margin-top:4px;}
   .rowline .lbl{color:var(--text-1);}
+  .rowline.discount{color:var(--teal);}
 
   .field{margin-bottom:12px;}
   .field label{display:block; font-size:12px; font-weight:600; color:var(--text-1); margin-bottom:6px;}
-  .field input, .field select{
-    width:100%; padding:11px 12px; border-radius:11px; border:1px solid var(--line);
-    background:var(--paper-0); color:var(--text-0); font-size:14px; font-family:inherit; outline:none;
-  }
-  .field input:focus, .field select:focus{border-color:var(--accent);}
+  .field input, .field select, .field textarea{ width:100%; padding:11px 12px; border-radius:11px; border:1px solid var(--line);
+    background:var(--paper-0); color:var(--text-0); font-size:14px; font-family:inherit; outline:none; }
+  .field textarea{resize:vertical; min-height:80px; font-family:'Courier New', monospace; font-size:12px;}
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--accent);}
+  .field-row{display:flex; gap:10px;}
+  .field-row .field{flex:1;}
   .quickcash{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 4px;}
-  .quickcash button{
-    flex:1; min-width:76px; padding:9px 4px; border-radius:10px; border:1px solid var(--line);
-    background:var(--paper-2); color:var(--text-0); font-size:12.5px; font-weight:700;
-  }
-  .btn-primary{
-    width:100%; padding:14px; border-radius:14px; border:none; background:var(--accent); color:#fff;
-    font-size:14.5px; font-weight:700; margin-top:10px;
-  }
+  .quickcash button{ flex:1; min-width:76px; padding:9px 4px; border-radius:10px; border:1px solid var(--line);
+    background:var(--paper-2); color:var(--text-0); font-size:12.5px; font-weight:700; }
+  .btn-primary{ width:100%; padding:14px; border-radius:14px; border:none; background:var(--accent); color:#fff;
+    font-size:14.5px; font-weight:700; margin-top:10px; }
   .btn-primary:disabled{opacity:0.4;}
-  .btn-secondary{
-    width:100%; padding:13px; border-radius:14px; border:1px solid var(--line); background:transparent;
-    color:var(--text-1); font-size:14px; font-weight:600; margin-top:8px;
-  }
-  .btn-danger-outline{
-    padding:8px 10px; border-radius:10px; border:1px solid var(--line); background:transparent; color:var(--danger);
-  }
-  .toggle-row{display:flex; align-items:center; justify-content:space-between; padding:4px 0 14px;}
+  .btn-secondary{ width:100%; padding:13px; border-radius:14px; border:1px solid var(--line); background:transparent;
+    color:var(--text-1); font-size:14px; font-weight:600; margin-top:8px; }
+  .btn-danger-outline{ padding:8px 10px; border-radius:10px; border:1px solid var(--line); background:transparent; color:var(--danger); font-size:12px; font-weight:600; }
+  .btn-mini{ padding:8px 10px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--text-1); font-size:12px; font-weight:600; }
+  .toggle-row{display:flex; align-items:center; justify-content:space-between; padding:4px 0 14px; gap:12px;}
+  .toggle-row .tt{font-size:13px; font-weight:600;}
+  .toggle-row .ts{font-size:11.5px; color:var(--text-2);}
   .switch{position:relative; width:44px; height:25px; flex:none;}
   .switch input{opacity:0; width:0; height:0;}
   .slider{position:absolute; inset:0; background:var(--line); border-radius:99px; transition:.2s;}
@@ -266,76 +186,78 @@
   .switch input:checked + .slider{background:var(--accent);}
   .switch input:checked + .slider:before{transform:translateX(19px);}
 
-  /* ---------- Produk view ---------- */
-  .plist-row{
-    display:flex; align-items:center; gap:12px; background:var(--paper-1); border:1px solid var(--line);
-    border-radius:14px; padding:12px; margin-bottom:8px;
-  }
+  .seg{display:flex; background:var(--paper-2); border-radius:12px; padding:4px; margin-bottom:12px;}
+  .seg button{flex:1; padding:9px 0; border:none; background:none; border-radius:9px; font-size:13px; font-weight:700; color:var(--text-1);}
+  .seg button.active{background:var(--accent); color:#fff;}
+
+  .plist-row{ display:flex; align-items:center; gap:12px; background:var(--paper-1); border:1px solid var(--line);
+    border-radius:14px; padding:12px; margin-bottom:8px; }
+  .plist-row.low{border-color:var(--amber);}
   .plist-row .dot{width:9px;height:9px;border-radius:50%; flex:none;}
   .plist-row .info{flex:1; min-width:0;}
   .plist-row .info .nm{font-size:13.5px; font-weight:700;}
   .plist-row .info .sub{font-size:11.5px; color:var(--text-2); margin-top:2px;}
+  .plist-row .info .sub.low{color:var(--amber); font-weight:700;}
   .plist-row .price{font-size:13.5px; font-weight:800; color:var(--text-0); white-space:nowrap;}
   .plist-row .edit{background:var(--paper-2); border:none; width:32px;height:32px;border-radius:9px; color:var(--text-1); flex:none;}
 
-  .fab{
-    position:fixed; right:0; left:0; bottom:calc(78px + env(safe-area-inset-bottom,0px)); z-index:15;
-    max-width:560px; margin:0 auto; padding:0 16px; display:flex; justify-content:flex-end;
-    pointer-events:none;
-  }
-  .fab button{
-    pointer-events:auto; background:var(--accent); color:#fff; border:none; width:52px;height:52px; border-radius:16px;
-    box-shadow:0 8px 20px rgba(47,111,237,0.4); font-size:26px; font-weight:400; line-height:1;
-  }
+  .printer-row{ display:flex; align-items:center; gap:10px; padding:11px 12px; border:1px solid var(--line);
+    border-radius:12px; margin-bottom:8px; background:var(--paper-0); }
+  .printer-row .pn{flex:1; font-size:13px; font-weight:600;}
+  .printer-row .pa{font-size:11px; color:var(--text-2);}
+  .printer-row.selected{border-color:var(--accent); background:rgba(47,111,237,0.07);}
 
-  /* ---------- Riwayat ---------- */
+  .fab{ position:fixed; right:0; left:0; bottom:calc(78px + env(safe-area-inset-bottom,0px)); z-index:15;
+    max-width:560px; margin:0 auto; padding:0 16px; display:flex; justify-content:flex-end; pointer-events:none; }
+  .fab button{ pointer-events:auto; background:var(--accent); color:#fff; border:none; width:52px;height:52px; border-radius:16px;
+    box-shadow:0 8px 20px rgba(47,111,237,0.4); font-size:26px; font-weight:400; line-height:1; }
+
   .daygroup h3{font-size:12px; font-weight:700; color:var(--text-2); text-transform:none; margin:16px 0 8px;}
-  .trxcard{
-    background:var(--paper-1); border:1px solid var(--line); border-radius:14px; padding:13px; margin-bottom:8px;
-  }
+  .trxcard{ background:var(--paper-1); border:1px solid var(--line); border-radius:14px; padding:13px; margin-bottom:8px; }
   .trxcard .top{display:flex; justify-content:space-between; align-items:center;}
   .trxcard .top .time{font-size:11.5px; color:var(--text-2); font-weight:600;}
   .trxcard .top .amt{font-size:15px; font-weight:800;}
   .trxcard .items{font-size:12px; color:var(--text-1); margin-top:6px; line-height:1.5;}
-  .trxcard .actions{display:flex; justify-content:flex-end; margin-top:8px;}
+  .trxcard .tag{display:inline-block; font-size:10px; font-weight:700; color:var(--teal); background:rgba(15,169,140,0.12); padding:2px 8px; border-radius:99px; margin-top:6px;}
+  .trxcard .actions{display:flex; justify-content:flex-end; gap:8px; margin-top:8px;}
 
-  /* ---------- Laporan ---------- */
   .stat-row{display:flex; gap:10px; margin-bottom:14px;}
-  .stat-card{
-    flex:1; background:var(--paper-1); border:1px solid var(--line); border-radius:16px; padding:14px;
-  }
+  .stat-card{ flex:1; background:var(--paper-1); border:1px solid var(--line); border-radius:16px; padding:14px; }
   .stat-card .lbl{font-size:11.5px; color:var(--text-2); font-weight:600;}
   .stat-card .val{font-size:18px; font-weight:800; margin-top:4px;}
-  .section-title{font-size:13.5px; font-weight:700; margin:18px 0 10px; color:var(--text-0);}
+  .section-title{font-size:13.5px; font-weight:700; margin:18px 0 10px; color:var(--text-0); display:flex; align-items:center; justify-content:space-between;}
   .bars{display:flex; align-items:flex-end; gap:8px; height:120px; padding:0 4px;}
   .bar-col{flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;}
   .bar-col .bar{width:100%; max-width:26px; background:var(--accent); border-radius:6px 6px 3px 3px; min-height:3px;}
   .bar-col .lb{font-size:10px; color:var(--text-2); font-weight:600;}
-  .toprow{
-    display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--line);
-  }
+  .toprow{ display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--line); }
   .toprow .rank{width:22px;height:22px;border-radius:7px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:var(--text-1); flex:none;}
   .toprow .nm{flex:1; font-size:13px; font-weight:600; min-width:0;}
   .toprow .qy{font-size:12px; color:var(--text-2); font-weight:600;}
+  .restockrow{display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--line);}
+  .restockrow .nm{flex:1; font-size:13px; font-weight:600;}
+  .restockrow .qy{font-size:12px; font-weight:800;}
+  .restockrow .qy.out{color:var(--danger);}
+  .restockrow .qy.low{color:var(--amber);}
 
-  #toast{
-    position:fixed; left:0; right:0; bottom:calc(84px + env(safe-area-inset-bottom,0px)); z-index:50;
-    display:flex; justify-content:center; pointer-events:none;
-  }
-  #toast .msg{
-    background:var(--ink-700); color:#fff; padding:10px 18px; border-radius:99px; font-size:12.5px; font-weight:600;
-    box-shadow:var(--shadow); opacity:0; transform:translateY(10px); transition:.25s;
-  }
+  #toast{ position:fixed; left:0; right:0; bottom:calc(84px + env(safe-area-inset-bottom,0px)); z-index:50; display:flex; justify-content:center; pointer-events:none; }
+  #toast .msg{ background:var(--ink-700); color:#fff; padding:10px 18px; border-radius:99px; font-size:12.5px; font-weight:600;
+    box-shadow:var(--shadow); opacity:0; transform:translateY(10px); transition:.25s; max-width:88%; text-align:center; }
   #toast .msg.show{opacity:1; transform:translateY(0);}
 
-  .receipt{
-    background:var(--paper-0); border:1px dashed var(--line); border-radius:14px; padding:16px; font-size:13px;
-  }
-  .receipt .rh{text-align:center; margin-bottom:10px;}
-  .receipt .rh .nm{font-size:15px; font-weight:800;}
-  .receipt .rh .sub{font-size:11px; color:var(--text-2);}
-  .receipt .rline{display:flex; justify-content:space-between; padding:4px 0;}
-  .receipt hr{border:none; border-top:1px dashed var(--line); margin:8px 0;}
+  .receipt{ background:var(--paper-0); border:1px dashed var(--line); border-radius:14px; padding:16px; font-size:13px; font-family:'Courier New', monospace; white-space:pre-wrap; }
+  .receipt-actions{display:flex; gap:8px; margin-top:12px;}
+  .receipt-actions .btn-primary, .receipt-actions .btn-secondary{margin-top:0;}
+
+  .scanwrap{position:relative; width:100%; border-radius:16px; overflow:hidden; background:#000; aspect-ratio:3/4;}
+  .scanwrap video{width:100%; height:100%; object-fit:cover; display:block;}
+  .scanframe{position:absolute; inset:14%; border:3px solid #fff; border-radius:16px; box-shadow:0 0 0 999px rgba(0,0,0,0.35); pointer-events:none;}
+  .scan-status{font-size:12px; color:var(--text-2); text-align:center; margin-top:10px;}
+  .manual-scan{display:flex; gap:8px; margin-top:12px;}
+  .manual-scan input{flex:1;}
+
+  hr.sep{border:none; border-top:1px solid var(--line); margin:16px 0;}
+  .muted{font-size:11.5px; color:var(--text-2); line-height:1.5;}
 </style>
 </head>
 <body>
@@ -348,6 +270,9 @@
       <p id="topSub">ATK &middot; Percetakan &middot; Perlengkapan</p>
     </div>
     <div class="spacer"></div>
+    <button class="icon-btn" id="settingsBtn" title="Pengaturan" style="margin-right:8px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 0 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 0 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1.04-1.56V3a2 2 0 0 1 4 0v.09A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.56 1.04H21a2 2 0 0 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15Z"/></svg>
+    </button>
     <button class="icon-btn" id="themeBtn" title="Ganti tampilan">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
     </button>
@@ -360,7 +285,11 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input id="searchInput" placeholder="Cari produk atau jasa...">
       </div>
+      <button class="scan-btn" id="scanBtnKasir" title="Pindai barcode">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+      </button>
     </div>
+    <div id="lowstockBanner"></div>
     <div class="chips" id="chipRow"></div>
     <div class="grid" id="productGrid"></div>
   </main>
@@ -384,27 +313,17 @@
   <!-- LAPORAN -->
   <main class="view" id="view-laporan">
     <div class="stat-row">
-      <div class="stat-card">
-        <div class="lbl">Omzet Hari Ini</div>
-        <div class="val" id="statToday">Rp 0</div>
-      </div>
-      <div class="stat-card">
-        <div class="lbl">Omzet Bulan Ini</div>
-        <div class="val" id="statMonth">Rp 0</div>
-      </div>
+      <div class="stat-card"><div class="lbl">Omzet Hari Ini</div><div class="val" id="statToday">Rp 0</div></div>
+      <div class="stat-card"><div class="lbl">Omzet Bulan Ini</div><div class="val" id="statMonth">Rp 0</div></div>
     </div>
     <div class="stat-row">
-      <div class="stat-card">
-        <div class="lbl">Transaksi Hari Ini</div>
-        <div class="val" id="statTrxToday">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="lbl">Rata-rata / Transaksi</div>
-        <div class="val" id="statAvg">Rp 0</div>
-      </div>
+      <div class="stat-card"><div class="lbl">Transaksi Hari Ini</div><div class="val" id="statTrxToday">0</div></div>
+      <div class="stat-card"><div class="lbl">Rata-rata / Transaksi</div><div class="val" id="statAvg">Rp 0</div></div>
     </div>
     <div class="section-title">Penjualan 7 Hari Terakhir</div>
     <div class="bars" id="barChart"></div>
+    <div class="section-title">Perlu Restock</div>
+    <div id="restockList"></div>
     <div class="section-title">Produk Terlaris (30 Hari)</div>
     <div id="topProducts"></div>
   </main>
@@ -412,17 +331,12 @@
   <div id="cartbar">
     <div class="inner">
       <div class="badge" id="cartCount">0</div>
-      <div class="info">
-        <div class="t1">Total belanja</div>
-        <div class="t2" id="cartTotal">Rp 0</div>
-      </div>
+      <div class="info"><div class="t1">Total belanja</div><div class="t2" id="cartTotal">Rp 0</div></div>
       <button class="cta" id="openCartBtn">Lihat Keranjang</button>
     </div>
   </div>
 
-  <div class="fab" id="fabProduk" style="display:none;">
-    <button id="addProdukBtn">+</button>
-  </div>
+  <div class="fab" id="fabProduk" style="display:none;"><button id="addProdukBtn">+</button></div>
 
   <nav class="bottomnav">
     <button class="navbtn active" data-view="kasir">
@@ -432,6 +346,7 @@
     <button class="navbtn" data-view="produk">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8l9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
       <span>Produk</span>
+      <span class="navdot" id="produkDot" style="display:none;"></span>
     </button>
     <button class="navbtn" data-view="riwayat">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/></svg>
@@ -453,11 +368,26 @@
   <div class="sheet-body">
     <div id="cartLines"></div>
     <div id="cartEmpty" class="empty" style="display:none; padding:30px 10px;">
-      <p>Keranjang masih kosong. Ketuk produk untuk menambahkan.</p>
+      <p>Keranjang masih kosong. Ketuk produk atau pindai barcode untuk menambahkan.</p>
     </div>
-    <div class="rowline"><span class="lbl">Jumlah item</span><span id="sumQty">0</span></div>
+    <div class="field-row" id="discountRow" style="margin-top:8px;">
+      <div class="field" style="flex:1.4;">
+        <label>Diskon</label>
+        <input type="number" id="discountValue" placeholder="0" inputmode="numeric">
+      </div>
+      <div class="field" style="flex:1;">
+        <label>Jenis</label>
+        <select id="discountType">
+          <option value="amount">Rupiah</option>
+          <option value="percent">Persen</option>
+        </select>
+      </div>
+    </div>
+    <div class="rowline"><span class="lbl">Subtotal</span><span id="sumSubtotal">Rp 0</span></div>
+    <div class="rowline discount" id="discountRowSummary" style="display:none;"><span class="lbl">Diskon</span><span id="sumDiscount">- Rp 0</span></div>
     <div class="rowline total"><span class="lbl">Total</span><span id="sumTotal">Rp 0</span></div>
     <button class="btn-primary" id="toPaymentBtn">Bayar</button>
+    <button class="btn-secondary" id="clearCartBtn" style="color:var(--danger); border-color:var(--danger);">Kosongkan Keranjang</button>
   </div>
 </div>
 
@@ -467,12 +397,18 @@
   <div class="sheet-head"><h2>Pembayaran</h2><button class="sheet-close" data-close>&times;</button></div>
   <div class="sheet-body">
     <div class="rowline total" style="border:none; padding-top:0;"><span class="lbl">Total Tagihan</span><span id="payTotal">Rp 0</span></div>
-    <div class="field" style="margin-top:10px;">
-      <label>Uang Diterima</label>
-      <input type="number" id="cashInput" placeholder="0" inputmode="numeric">
+    <div class="seg" id="paymethodSeg">
+      <button data-m="tunai" class="active">Tunai</button>
+      <button data-m="nontunai">Non-Tunai (QRIS/TF)</button>
     </div>
-    <div class="quickcash" id="quickCash"></div>
-    <div class="rowline"><span class="lbl">Kembalian</span><span id="changeAmt" style="font-weight:800;">Rp 0</span></div>
+    <div id="cashSection">
+      <div class="field">
+        <label>Uang Diterima</label>
+        <input type="number" id="cashInput" placeholder="0" inputmode="numeric">
+      </div>
+      <div class="quickcash" id="quickCash"></div>
+      <div class="rowline"><span class="lbl">Kembalian</span><span id="changeAmt" style="font-weight:800;">Rp 0</span></div>
+    </div>
     <button class="btn-primary" id="finishTrxBtn" disabled>Selesaikan Transaksi</button>
   </div>
 </div>
@@ -483,7 +419,11 @@
   <div class="sheet-head"><h2>Struk Transaksi</h2><button class="sheet-close" data-close>&times;</button></div>
   <div class="sheet-body">
     <div class="receipt" id="receiptBody"></div>
-    <button class="btn-primary" id="doneReceiptBtn">Selesai</button>
+    <div class="receipt-actions">
+      <button class="btn-secondary" id="printReceiptBtn" style="margin-top:12px;">🖨️ Cetak Struk</button>
+      <button class="btn-primary" id="doneReceiptBtn" style="margin-top:12px;">Selesai</button>
+    </div>
+    <p class="muted" id="printHint" style="margin-top:10px;"></p>
   </div>
 </div>
 
@@ -492,39 +432,95 @@
   <div class="sheet-handle"></div>
   <div class="sheet-head"><h2 id="productFormTitle">Tambah Produk</h2><button class="sheet-close" data-close>&times;</button></div>
   <div class="sheet-body">
-    <div class="field">
-      <label>Nama Produk / Jasa</label>
-      <input type="text" id="fName" placeholder="Contoh: Pulpen Standard">
-    </div>
-    <div class="field">
-      <label>Kategori</label>
+    <div class="field"><label>Nama Produk / Jasa</label><input type="text" id="fName" placeholder="Contoh: Pulpen Standard"></div>
+    <div class="field"><label>Kategori</label>
       <select id="fCategory">
         <option value="ATK">ATK</option>
         <option value="Percetakan">Jasa Percetakan</option>
         <option value="Lainnya">Perlengkapan Lainnya</option>
       </select>
     </div>
-    <div class="field">
-      <label>Harga (Rp)</label>
-      <input type="number" id="fPrice" placeholder="0" inputmode="numeric">
+    <div class="field-row">
+      <div class="field"><label>Harga (Rp)</label><input type="number" id="fPrice" placeholder="0" inputmode="numeric"></div>
+      <div class="field"><label>Satuan</label><input type="text" id="fUnit" placeholder="pcs / lembar"></div>
     </div>
     <div class="field">
-      <label>Satuan</label>
-      <input type="text" id="fUnit" placeholder="pcs / lembar / paket">
+      <label>Barcode (opsional)</label>
+      <div style="display:flex; gap:8px;">
+        <input type="text" id="fBarcode" placeholder="Pindai atau ketik manual" style="flex:1;">
+        <button type="button" class="btn-mini" id="scanForFormBtn">Pindai</button>
+      </div>
     </div>
     <div class="toggle-row">
-      <div>
-        <div style="font-size:13px; font-weight:600;">Kelola stok</div>
-        <div style="font-size:11.5px; color:var(--text-2);">Matikan untuk jasa (percetakan, dll)</div>
-      </div>
+      <div><div class="tt">Kelola stok</div><div class="ts">Matikan untuk jasa (percetakan, dll)</div></div>
       <label class="switch"><input type="checkbox" id="fTrackStock" checked><span class="slider"></span></label>
     </div>
-    <div class="field" id="stockField">
-      <label>Stok Saat Ini</label>
-      <input type="number" id="fStock" placeholder="0" inputmode="numeric">
-    </div>
+    <div class="field" id="stockField"><label>Stok Saat Ini</label><input type="number" id="fStock" placeholder="0" inputmode="numeric"></div>
     <button class="btn-primary" id="saveProductBtn">Simpan Produk</button>
     <button class="btn-secondary" id="deleteProductBtn" style="display:none; color:var(--danger); border-color:var(--danger);">Hapus Produk</button>
+  </div>
+</div>
+
+<!-- SETTINGS SHEET -->
+<div class="sheet" id="sheetSettings">
+  <div class="sheet-handle"></div>
+  <div class="sheet-head"><h2>Pengaturan</h2><button class="sheet-close" data-close>&times;</button></div>
+  <div class="sheet-body">
+    <div class="section-title" style="margin-top:0;">Info Struk</div>
+    <div class="field"><label>Nama Toko</label><input type="text" id="stName"></div>
+    <div class="field"><label>Alamat</label><input type="text" id="stAddress" placeholder="Opsional"></div>
+    <div class="field"><label>No. Telepon / WA</label><input type="text" id="stPhone" placeholder="Opsional"></div>
+    <div class="field"><label>Catatan Kaki Struk</label><input type="text" id="stFooter" placeholder="Terima kasih atas kunjungan Anda"></div>
+    <div class="field"><label>Lebar Kertas Printer</label>
+      <select id="stPaperWidth">
+        <option value="58">58 mm (umum, portabel)</option>
+        <option value="80">80 mm</option>
+      </select>
+    </div>
+    <div class="toggle-row">
+      <div><div class="tt">Cetak otomatis</div><div class="ts">Langsung cetak setelah transaksi selesai</div></div>
+      <label class="switch"><input type="checkbox" id="stAutoPrint"><span class="slider"></span></label>
+    </div>
+
+    <hr class="sep">
+    <div class="section-title" style="margin-top:0;">Printer Bluetooth 58mm</div>
+    <p class="muted" id="printerHint"></p>
+    <div id="printerList"></div>
+    <button class="btn-mini" id="refreshPrintersBtn" style="width:100%; margin-top:6px;">🔄 Muat Ulang Daftar Printer</button>
+    <button class="btn-secondary" id="testPrintBtn">Cetak Struk Percobaan</button>
+
+    <hr class="sep">
+    <div class="section-title" style="margin-top:0;">Peringatan Stok</div>
+    <div class="field"><label>Batas Stok Menipis</label><input type="number" id="stLowStock" inputmode="numeric"></div>
+    <p class="muted">Produk dengan stok sama atau di bawah angka ini akan ditandai "Stok Menipis" di halaman Kasir dan Laporan.</p>
+
+    <button class="btn-primary" id="saveSettingsBtn">Simpan Pengaturan</button>
+
+    <hr class="sep">
+    <div class="section-title" style="margin-top:0;">Cadangkan &amp; Pulihkan Data</div>
+    <p class="muted">Salin teks di bawah ini dan simpan di tempat aman (misal catatan HP atau email ke diri sendiri) sebagai cadangan data produk &amp; transaksi.</p>
+    <div class="field"><textarea id="backupText" rows="5" readonly></textarea></div>
+    <button class="btn-mini" id="copyBackupBtn" style="width:100%;">Salin ke Clipboard</button>
+    <p class="muted" style="margin-top:14px;">Untuk memulihkan, tempel teks cadangan di sini lalu tekan Pulihkan. Ini akan menggantikan seluruh data saat ini.</p>
+    <div class="field"><textarea id="restoreText" rows="5" placeholder="Tempel teks cadangan di sini"></textarea></div>
+    <button class="btn-secondary" id="restoreBtn" style="color:var(--danger); border-color:var(--danger);">Pulihkan Data</button>
+  </div>
+</div>
+
+<!-- SCAN SHEET -->
+<div class="sheet" id="sheetScan">
+  <div class="sheet-handle"></div>
+  <div class="sheet-head"><h2>Pindai Barcode</h2><button class="sheet-close" data-close id="scanCloseBtn">&times;</button></div>
+  <div class="sheet-body">
+    <div class="scanwrap" id="scanwrap">
+      <video id="scanVideo" playsinline autoplay muted></video>
+      <div class="scanframe"></div>
+    </div>
+    <div class="scan-status" id="scanStatus">Arahkan kamera ke barcode produk</div>
+    <div class="manual-scan">
+      <input type="text" id="manualBarcodeInput" placeholder="atau ketik kode barcode manual" inputmode="numeric">
+      <button class="btn-mini" id="manualBarcodeBtn">Cari</button>
+    </div>
   </div>
 </div>
 
@@ -536,136 +532,143 @@
 
   var STORE_KEY_P = "vk_products_v1";
   var STORE_KEY_T = "vk_transactions_v1";
+  var STORE_KEY_S = "vk_settings_v1";
   var STORE_KEY_THEME = "vk_theme_v1";
 
-  var CATS = {
-    "ATK": "#2F6FED",
-    "Percetakan": "#0FA98C",
-    "Lainnya": "#E8962C"
-  };
+  var CATS = { "ATK": "#2F6FED", "Percetakan": "#0FA98C", "Lainnya": "#E8962C" };
 
   function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
   function rupiah(n){ return "Rp " + Math.round(n).toLocaleString('id-ID'); }
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; });
+  }
 
   function seedProducts(){
     return [
-      {id:uid(), name:"Pulpen Standard", cat:"ATK", price:3000, unit:"pcs", trackStock:true, stock:120},
-      {id:uid(), name:"Pensil 2B", cat:"ATK", price:2500, unit:"pcs", trackStock:true, stock:100},
-      {id:uid(), name:"Penghapus", cat:"ATK", price:2000, unit:"pcs", trackStock:true, stock:80},
-      {id:uid(), name:"Penggaris 30cm", cat:"ATK", price:4000, unit:"pcs", trackStock:true, stock:60},
-      {id:uid(), name:"Buku Tulis 38 Lbr", cat:"ATK", price:5500, unit:"pcs", trackStock:true, stock:150},
-      {id:uid(), name:"Spidol Whiteboard", cat:"ATK", price:8000, unit:"pcs", trackStock:true, stock:40},
-      {id:uid(), name:"Correction Pen", cat:"ATK", price:7000, unit:"pcs", trackStock:true, stock:35},
-      {id:uid(), name:"Map Plastik", cat:"ATK", price:3500, unit:"pcs", trackStock:true, stock:70},
-      {id:uid(), name:"Kertas HVS A4 (Rim)", cat:"ATK", price:55000, unit:"rim", trackStock:true, stock:25},
-      {id:uid(), name:"Lem Kertas", cat:"ATK", price:4000, unit:"pcs", trackStock:true, stock:50},
-      {id:uid(), name:"Gunting", cat:"ATK", price:9000, unit:"pcs", trackStock:true, stock:30},
-      {id:uid(), name:"Stapler", cat:"ATK", price:15000, unit:"pcs", trackStock:true, stock:20},
-      {id:uid(), name:"Isi Staples", cat:"ATK", price:3000, unit:"box", trackStock:true, stock:45},
-      {id:uid(), name:"Amplop Coklat", cat:"ATK", price:1000, unit:"pcs", trackStock:true, stock:200},
-
-      {id:uid(), name:"Print Hitam Putih", cat:"Percetakan", price:500, unit:"lembar", trackStock:false, stock:0},
-      {id:uid(), name:"Print Warna", cat:"Percetakan", price:2000, unit:"lembar", trackStock:false, stock:0},
-      {id:uid(), name:"Fotokopi", cat:"Percetakan", price:300, unit:"lembar", trackStock:false, stock:0},
-      {id:uid(), name:"Jilid Spiral", cat:"Percetakan", price:8000, unit:"buku", trackStock:false, stock:0},
-      {id:uid(), name:"Laminating A4", cat:"Percetakan", price:5000, unit:"lembar", trackStock:false, stock:0},
-      {id:uid(), name:"Scan Dokumen", cat:"Percetakan", price:1000, unit:"lembar", trackStock:false, stock:0},
-      {id:uid(), name:"Cetak Foto 4R", cat:"Percetakan", price:3000, unit:"lembar", trackStock:false, stock:0},
-
-      {id:uid(), name:"Flashdisk 16GB", cat:"Lainnya", price:65000, unit:"pcs", trackStock:true, stock:15},
-      {id:uid(), name:"Kabel Data USB", cat:"Lainnya", price:25000, unit:"pcs", trackStock:true, stock:20},
-      {id:uid(), name:"Tinta Printer Refill", cat:"Lainnya", price:35000, unit:"botol", trackStock:true, stock:18},
-      {id:uid(), name:"Toner Printer", cat:"Lainnya", price:120000, unit:"pcs", trackStock:true, stock:6},
-      {id:uid(), name:"Baterai AA (isi 2)", cat:"Lainnya", price:8000, unit:"pack", trackStock:true, stock:25},
-      {id:uid(), name:"Kalkulator", cat:"Lainnya", price:35000, unit:"pcs", trackStock:true, stock:10}
+      {id:uid(), name:"Pulpen Standard", cat:"ATK", price:3000, unit:"pcs", trackStock:true, stock:120, barcode:""},
+      {id:uid(), name:"Pensil 2B", cat:"ATK", price:2500, unit:"pcs", trackStock:true, stock:100, barcode:""},
+      {id:uid(), name:"Penghapus", cat:"ATK", price:2000, unit:"pcs", trackStock:true, stock:80, barcode:""},
+      {id:uid(), name:"Penggaris 30cm", cat:"ATK", price:4000, unit:"pcs", trackStock:true, stock:60, barcode:""},
+      {id:uid(), name:"Buku Tulis 38 Lbr", cat:"ATK", price:5500, unit:"pcs", trackStock:true, stock:150, barcode:""},
+      {id:uid(), name:"Spidol Whiteboard", cat:"ATK", price:8000, unit:"pcs", trackStock:true, stock:40, barcode:""},
+      {id:uid(), name:"Correction Pen", cat:"ATK", price:7000, unit:"pcs", trackStock:true, stock:35, barcode:""},
+      {id:uid(), name:"Map Plastik", cat:"ATK", price:3500, unit:"pcs", trackStock:true, stock:70, barcode:""},
+      {id:uid(), name:"Kertas HVS A4 (Rim)", cat:"ATK", price:55000, unit:"rim", trackStock:true, stock:25, barcode:""},
+      {id:uid(), name:"Lem Kertas", cat:"ATK", price:4000, unit:"pcs", trackStock:true, stock:50, barcode:""},
+      {id:uid(), name:"Gunting", cat:"ATK", price:9000, unit:"pcs", trackStock:true, stock:30, barcode:""},
+      {id:uid(), name:"Stapler", cat:"ATK", price:15000, unit:"pcs", trackStock:true, stock:20, barcode:""},
+      {id:uid(), name:"Isi Staples", cat:"ATK", price:3000, unit:"box", trackStock:true, stock:45, barcode:""},
+      {id:uid(), name:"Amplop Coklat", cat:"ATK", price:1000, unit:"pcs", trackStock:true, stock:200, barcode:""},
+      {id:uid(), name:"Print Hitam Putih", cat:"Percetakan", price:500, unit:"lembar", trackStock:false, stock:0, barcode:""},
+      {id:uid(), name:"Print Warna", cat:"Percetakan", price:2000, unit:"lembar", trackStock:false, stock:0, barcode:""},
+      {id:uid(), name:"Fotokopi", cat:"Percetakan", price:300, unit:"lembar", trackStock:false, stock:0, barcode:""},
+      {id:uid(), name:"Jilid Spiral", cat:"Percetakan", price:8000, unit:"buku", trackStock:false, stock:0, barcode:""},
+      {id:uid(), name:"Laminating A4", cat:"Percetakan", price:5000, unit:"lembar", trackStock:false, stock:0, barcode:""},
+      {id:uid(), name:"Scan Dokumen", cat:"Percetakan", price:1000, unit:"lembar", trackStock:false, stock:0, barcode:""},
+      {id:uid(), name:"Cetak Foto 4R", cat:"Percetakan", price:3000, unit:"lembar", trackStock:false, stock:0, barcode:""},
+      {id:uid(), name:"Flashdisk 16GB", cat:"Lainnya", price:65000, unit:"pcs", trackStock:true, stock:15, barcode:""},
+      {id:uid(), name:"Kabel Data USB", cat:"Lainnya", price:25000, unit:"pcs", trackStock:true, stock:20, barcode:""},
+      {id:uid(), name:"Tinta Printer Refill", cat:"Lainnya", price:35000, unit:"botol", trackStock:true, stock:18, barcode:""},
+      {id:uid(), name:"Toner Printer", cat:"Lainnya", price:120000, unit:"pcs", trackStock:true, stock:6, barcode:""},
+      {id:uid(), name:"Baterai AA (isi 2)", cat:"Lainnya", price:8000, unit:"pack", trackStock:true, stock:25, barcode:""},
+      {id:uid(), name:"Kalkulator", cat:"Lainnya", price:35000, unit:"pcs", trackStock:true, stock:10, barcode:""}
     ];
+  }
+  function defaultSettings(){
+    return {
+      storeName:"Virgo Komputer", address:"", phone:"",
+      footer:"Terima kasih atas kunjungan Anda",
+      paperWidth:58, autoPrint:false, lowStockThreshold:5,
+      printerAddress:"", printerName:""
+    };
   }
 
   var state = {
-    products: [],
-    transactions: [],
-    cart: [], // {productId, name, price, qty, unit}
-    activeCat: "Semua",
-    search: "",
-    searchProduk: "",
-    editingProductId: null
+    products: [], transactions: [], settings: defaultSettings(),
+    cart: [], discount:{type:'amount', value:0}, payMethod:'tunai',
+    activeCat: "Semua", search: "", searchProduk: "", editingProductId: null,
+    scanTarget: null, scanStream: null, scanRAF: null
   };
 
   function loadData(){
     try{
       var p = localStorage.getItem(STORE_KEY_P);
       var t = localStorage.getItem(STORE_KEY_T);
+      var s = localStorage.getItem(STORE_KEY_S);
       state.products = p ? JSON.parse(p) : seedProducts();
       state.transactions = t ? JSON.parse(t) : [];
+      state.settings = s ? Object.assign(defaultSettings(), JSON.parse(s)) : defaultSettings();
       var theme = localStorage.getItem(STORE_KEY_THEME);
       if(theme) document.documentElement.setAttribute('data-theme', theme);
     }catch(e){
-      state.products = seedProducts();
-      state.transactions = [];
+      state.products = seedProducts(); state.transactions = []; state.settings = defaultSettings();
     }
-    if(!p_exists()) saveProducts();
-    function p_exists(){ try{ return !!localStorage.getItem(STORE_KEY_P); }catch(e){ return false; } }
+    if(!localStorage.getItem(STORE_KEY_P)) saveProducts();
+    if(!localStorage.getItem(STORE_KEY_S)) saveSettings();
   }
   function saveProducts(){ try{ localStorage.setItem(STORE_KEY_P, JSON.stringify(state.products)); }catch(e){} }
   function saveTransactions(){ try{ localStorage.setItem(STORE_KEY_T, JSON.stringify(state.transactions)); }catch(e){} }
+  function saveSettings(){ try{ localStorage.setItem(STORE_KEY_S, JSON.stringify(state.settings)); }catch(e){} }
 
-  // ---------- Toast ----------
   var toastTimer;
   function toast(msg){
     var el = document.getElementById('toastMsg');
-    el.textContent = msg;
-    el.classList.add('show');
+    el.textContent = msg; el.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function(){ el.classList.remove('show'); }, 1800);
+    toastTimer = setTimeout(function(){ el.classList.remove('show'); }, 2200);
   }
 
   // ---------- Navigation ----------
   var views = ['kasir','produk','riwayat','laporan'];
   function switchView(name){
-    views.forEach(function(v){
-      document.getElementById('view-'+v).classList.toggle('active', v===name);
-    });
-    document.querySelectorAll('.navbtn').forEach(function(b){
-      b.classList.toggle('active', b.dataset.view===name);
-    });
+    views.forEach(function(v){ document.getElementById('view-'+v).classList.toggle('active', v===name); });
+    document.querySelectorAll('.navbtn').forEach(function(b){ b.classList.toggle('active', b.dataset.view===name); });
     document.getElementById('fabProduk').style.display = (name==='produk') ? 'flex' : 'none';
     if(name==='produk') renderProductList();
     if(name==='riwayat') renderHistory();
     if(name==='laporan') renderReport();
     document.querySelector('#app').scrollTop = 0;
   }
-  document.querySelectorAll('.navbtn').forEach(function(b){
-    b.addEventListener('click', function(){ switchView(b.dataset.view); });
-  });
+  document.querySelectorAll('.navbtn').forEach(function(b){ b.addEventListener('click', function(){ switchView(b.dataset.view); }); });
 
-  // ---------- Theme toggle ----------
+  // ---------- Theme ----------
   document.getElementById('themeBtn').addEventListener('click', function(){
     var cur = document.documentElement.getAttribute('data-theme');
     var mqDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var next;
-    if(!cur){ next = mqDark ? 'light' : 'dark'; }
-    else if(cur==='dark'){ next = 'light'; }
-    else { next = 'dark'; }
+    var next = !cur ? (mqDark?'light':'dark') : (cur==='dark'?'light':'dark');
     document.documentElement.setAttribute('data-theme', next);
     try{ localStorage.setItem(STORE_KEY_THEME, next); }catch(e){}
   });
 
   // ---------- Sheets ----------
   var scrim = document.getElementById('scrim');
-  function openSheet(id){
-    scrim.classList.add('show');
-    document.getElementById(id).classList.add('show');
-  }
+  function openSheet(id){ scrim.classList.add('show'); document.getElementById(id).classList.add('show'); }
   function closeAllSheets(){
     scrim.classList.remove('show');
-    ['sheetCart','sheetPay','sheetReceipt','sheetProduct'].forEach(function(id){
+    ['sheetCart','sheetPay','sheetReceipt','sheetProduct','sheetSettings','sheetScan'].forEach(function(id){
       document.getElementById(id).classList.remove('show');
     });
+    stopScanner();
   }
   scrim.addEventListener('click', closeAllSheets);
-  document.querySelectorAll('[data-close]').forEach(function(b){
-    b.addEventListener('click', closeAllSheets);
-  });
+  document.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', closeAllSheets); });
+
+  // ---------- Low stock helpers ----------
+  function isOut(p){ return p.trackStock && p.stock<=0; }
+  function isLow(p){ return p.trackStock && p.stock>0 && p.stock<=state.settings.lowStockThreshold; }
+  function renderLowStockBanner(){
+    var count = state.products.filter(function(p){ return isLow(p)||isOut(p); }).length;
+    var wrap = document.getElementById('lowstockBanner');
+    var dot = document.getElementById('produkDot');
+    if(count===0){ wrap.innerHTML=''; dot.style.display='none'; return; }
+    dot.style.display='block';
+    wrap.innerHTML =
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'+
+      '<span><b>'+count+' produk</b> stoknya menipis atau habis</span>';
+    wrap.className = 'lowstock-banner';
+    wrap.style.cursor='pointer';
+    wrap.onclick = function(){ switchView('produk'); };
+  }
 
   // ---------- Category chips ----------
   function renderChips(){
@@ -676,11 +679,7 @@
       var b = document.createElement('button');
       b.className = 'chip' + (state.activeCat===c ? ' active' : '');
       b.textContent = c === 'Percetakan' ? 'Jasa Percetakan' : c;
-      b.addEventListener('click', function(){
-        state.activeCat = c;
-        renderChips();
-        renderGrid();
-      });
+      b.addEventListener('click', function(){ state.activeCat = c; renderChips(); renderGrid(); });
       row.appendChild(b);
     });
   }
@@ -696,36 +695,26 @@
     });
     grid.innerHTML = '';
     if(list.length===0){
-      grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">' +
-        '<h3>Produk tidak ditemukan</h3><p>Coba kata kunci lain atau tambahkan produk baru di tab Produk.</p></div>';
+      grid.innerHTML = '<div class="empty" style="grid-column:1/-1;"><h3>Produk tidak ditemukan</h3><p>Coba kata kunci lain, pindai barcode, atau tambahkan produk baru.</p></div>';
       return;
     }
     list.forEach(function(p){
-      var outOfStock = p.trackStock && p.stock<=0;
+      var out = isOut(p); var low = isLow(p);
       var card = document.createElement('button');
-      card.className = 'pcard' + (outOfStock ? ' disabled' : '');
+      card.className = 'pcard' + (out ? ' disabled' : '');
+      var metaHtml = p.trackStock
+        ? (out ? '<span class="badge-out">Stok habis</span>' : (low ? '<span class="badge-low">Stok menipis: '+p.stock+' '+escapeHtml(p.unit)+'</span>' : 'Stok '+p.stock+' '+escapeHtml(p.unit)))
+        : 'per '+escapeHtml(p.unit);
       card.innerHTML =
-        '<span class="cat-dot" style="background:'+CATS[p.cat]+'"></span>' +
-        '<div class="pname">'+escapeHtml(p.name)+'</div>' +
-        '<div class="pmeta">'+ (p.trackStock ? (outOfStock ? '<span class="stockbadge">Stok habis</span>' : 'Stok '+p.stock+' '+escapeHtml(p.unit)) : 'per '+escapeHtml(p.unit)) +'</div>' +
+        '<span class="cat-dot" style="background:'+CATS[p.cat]+'"></span>'+
+        '<div class="pname">'+escapeHtml(p.name)+'</div>'+
+        '<div class="pmeta">'+metaHtml+'</div>'+
         '<div class="pprice">'+rupiah(p.price)+'</div>';
-      if(!outOfStock){
-        card.addEventListener('click', function(){ addToCart(p); });
-      }
+      if(!out){ card.addEventListener('click', function(){ addToCart(p); }); }
       grid.appendChild(card);
     });
   }
-
-  function escapeHtml(s){
-    return String(s).replace(/[&<>"']/g, function(c){
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
-    });
-  }
-
-  document.getElementById('searchInput').addEventListener('input', function(e){
-    state.search = e.target.value;
-    renderGrid();
-  });
+  document.getElementById('searchInput').addEventListener('input', function(e){ state.search = e.target.value; renderGrid(); });
 
   // ---------- Cart logic ----------
   function addToCart(p){
@@ -736,68 +725,74 @@
     } else {
       state.cart.push({productId:p.id, name:p.name, price:p.price, qty:1, unit:p.unit});
     }
-    renderCartBar();
-    renderCartSheet();
-    toast(p.name+' ditambahkan');
+    renderCartBar(); renderCartSheet(); toast(p.name+' ditambahkan');
   }
   function changeQty(productId, delta){
     var line = state.cart.find(function(l){ return l.productId===productId; });
     if(!line) return;
     var product = state.products.find(function(p){ return p.id===productId; });
     var newQty = line.qty + delta;
-    if(newQty <= 0){
-      state.cart = state.cart.filter(function(l){ return l.productId!==productId; });
-    } else {
+    if(newQty <= 0){ state.cart = state.cart.filter(function(l){ return l.productId!==productId; }); }
+    else {
       if(product && product.trackStock && newQty > product.stock){ toast('Stok tidak mencukupi'); return; }
       line.qty = newQty;
     }
-    renderCartBar();
-    renderCartSheet();
+    renderCartBar(); renderCartSheet();
   }
-  function cartTotal(){ return state.cart.reduce(function(s,l){ return s + l.price*l.qty; }, 0); }
+  function cartSubtotal(){ return state.cart.reduce(function(s,l){ return s + l.price*l.qty; }, 0); }
   function cartQty(){ return state.cart.reduce(function(s,l){ return s + l.qty; }, 0); }
+  function discountAmount(subtotal){
+    var v = parseFloat(state.discount.value) || 0;
+    if(v<=0) return 0;
+    var amt = state.discount.type==='percent' ? subtotal * v/100 : v;
+    return Math.min(Math.max(amt,0), subtotal);
+  }
+  function cartGrandTotal(){ var sub = cartSubtotal(); return Math.max(0, sub - discountAmount(sub)); }
 
   function renderCartBar(){
     var bar = document.getElementById('cartbar');
     var n = cartQty();
     bar.classList.toggle('show', n>0);
     document.getElementById('cartCount').textContent = n;
-    document.getElementById('cartTotal').textContent = rupiah(cartTotal());
+    document.getElementById('cartTotal').textContent = rupiah(cartGrandTotal());
   }
 
   function renderCartSheet(){
     var wrap = document.getElementById('cartLines');
     var empty = document.getElementById('cartEmpty');
     wrap.innerHTML = '';
-    if(state.cart.length===0){
-      empty.style.display='block';
-    } else {
+    if(state.cart.length===0){ empty.style.display='block'; }
+    else {
       empty.style.display='none';
       state.cart.forEach(function(l){
         var row = document.createElement('div');
         row.className = 'cartline';
         row.innerHTML =
-          '<div class="cn"><div class="nm">'+escapeHtml(l.name)+'</div><div class="pr">'+rupiah(l.price)+' / '+escapeHtml(l.unit)+'</div></div>' +
-          '<div class="qty">'+
-            '<button data-act="minus">&minus;</button>'+
-            '<span>'+l.qty+'</span>'+
-            '<button data-act="plus">+</button>'+
-          '</div>';
+          '<div class="cn"><div class="nm">'+escapeHtml(l.name)+'</div><div class="pr">'+rupiah(l.price)+' / '+escapeHtml(l.unit)+'</div></div>'+
+          '<div class="qty"><button data-act="minus">&minus;</button><span>'+l.qty+'</span><button data-act="plus">+</button></div>';
         row.querySelector('[data-act="minus"]').addEventListener('click', function(){ changeQty(l.productId, -1); });
         row.querySelector('[data-act="plus"]').addEventListener('click', function(){ changeQty(l.productId, 1); });
         wrap.appendChild(row);
       });
     }
-    document.getElementById('sumQty').textContent = cartQty();
-    document.getElementById('sumTotal').textContent = rupiah(cartTotal());
+    var sub = cartSubtotal(); var disc = discountAmount(sub);
+    document.getElementById('sumSubtotal').textContent = rupiah(sub);
+    document.getElementById('discountRowSummary').style.display = disc>0 ? 'flex' : 'none';
+    document.getElementById('sumDiscount').textContent = '- '+rupiah(disc);
+    document.getElementById('sumTotal').textContent = rupiah(sub-disc);
     document.getElementById('toPaymentBtn').disabled = state.cart.length===0;
   }
-
-  document.getElementById('openCartBtn').addEventListener('click', function(){
-    renderCartSheet();
-    openSheet('sheetCart');
+  document.getElementById('discountValue').addEventListener('input', function(e){ state.discount.value = e.target.value; renderCartSheet(); renderCartBar(); });
+  document.getElementById('discountType').addEventListener('change', function(e){ state.discount.type = e.target.value; renderCartSheet(); renderCartBar(); });
+  document.getElementById('clearCartBtn').addEventListener('click', function(){
+    if(state.cart.length===0) return;
+    if(!confirm('Kosongkan semua item di keranjang?')) return;
+    state.cart = []; state.discount = {type:'amount', value:0};
+    document.getElementById('discountValue').value=''; document.getElementById('discountType').value='amount';
+    renderCartBar(); renderCartSheet(); toast('Keranjang dikosongkan');
   });
 
+  document.getElementById('openCartBtn').addEventListener('click', function(){ renderCartSheet(); openSheet('sheetCart'); });
   document.getElementById('toPaymentBtn').addEventListener('click', function(){
     if(state.cart.length===0) return;
     document.getElementById('sheetCart').classList.remove('show');
@@ -806,11 +801,21 @@
   });
 
   // ---------- Payment ----------
+  document.getElementById('paymethodSeg').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    state.payMethod = b.dataset.m;
+    document.querySelectorAll('#paymethodSeg button').forEach(function(x){ x.classList.toggle('active', x===b); });
+    document.getElementById('cashSection').style.display = state.payMethod==='tunai' ? 'block' : 'none';
+    updatePayment();
+  });
   function setupPayment(){
-    var total = cartTotal();
+    var total = cartGrandTotal();
     document.getElementById('payTotal').textContent = rupiah(total);
     document.getElementById('cashInput').value = '';
     document.getElementById('changeAmt').textContent = rupiah(0);
+    state.payMethod = 'tunai';
+    document.querySelectorAll('#paymethodSeg button').forEach(function(x){ x.classList.toggle('active', x.dataset.m==='tunai'); });
+    document.getElementById('cashSection').style.display='block';
     document.getElementById('finishTrxBtn').disabled = true;
 
     var quick = document.getElementById('quickCash');
@@ -820,15 +825,16 @@
       if(v < total && v !== total) return;
       var b = document.createElement('button');
       b.textContent = v===total ? 'Uang Pas' : rupiah(v);
-      b.addEventListener('click', function(){
-        document.getElementById('cashInput').value = v;
-        updatePayment();
-      });
+      b.addEventListener('click', function(){ document.getElementById('cashInput').value = v; updatePayment(); });
       quick.appendChild(b);
     });
   }
   function updatePayment(){
-    var total = cartTotal();
+    var total = cartGrandTotal();
+    if(state.payMethod==='nontunai'){
+      document.getElementById('finishTrxBtn').disabled = false;
+      return;
+    }
     var cash = parseFloat(document.getElementById('cashInput').value) || 0;
     var change = cash - total;
     document.getElementById('changeAmt').textContent = rupiah(Math.max(change,0));
@@ -838,11 +844,10 @@
   document.getElementById('cashInput').addEventListener('input', updatePayment);
 
   document.getElementById('finishTrxBtn').addEventListener('click', function(){
-    var total = cartTotal();
-    var cash = parseFloat(document.getElementById('cashInput').value) || 0;
-    if(cash < total) return;
+    var sub = cartSubtotal(); var disc = discountAmount(sub); var total = sub - disc;
+    var cash = state.payMethod==='nontunai' ? total : (parseFloat(document.getElementById('cashInput').value) || 0);
+    if(state.payMethod==='tunai' && cash < total) return;
 
-    // decrement stock
     state.cart.forEach(function(l){
       var p = state.products.find(function(pp){ return pp.id===l.productId; });
       if(p && p.trackStock){ p.stock = Math.max(0, p.stock - l.qty); }
@@ -850,40 +855,97 @@
     saveProducts();
 
     var trx = {
-      id: uid(),
-      date: new Date().toISOString(),
+      id: uid(), date: new Date().toISOString(),
       items: state.cart.map(function(l){ return {name:l.name, price:l.price, qty:l.qty, unit:l.unit}; }),
-      total: total,
-      cash: cash,
-      change: cash - total
+      subtotal: sub, discount: disc, total: total,
+      method: state.payMethod, cash: cash, change: cash - total
     };
     state.transactions.unshift(trx);
     saveTransactions();
 
     renderReceipt(trx);
-    state.cart = [];
-    renderCartBar();
-    renderCartSheet();
-    renderGrid();
+    state.cart = []; state.discount = {type:'amount', value:0};
+    document.getElementById('discountValue').value=''; document.getElementById('discountType').value='amount';
+    renderCartBar(); renderCartSheet(); renderGrid(); renderLowStockBanner();
 
     document.getElementById('sheetPay').classList.remove('show');
     document.getElementById('sheetReceipt').classList.add('show');
+
+    if(state.settings.autoPrint){ setTimeout(function(){ printTransaction(trx); }, 300); }
   });
 
-  function renderReceipt(trx){
-    var d = new Date(trx.date);
-    var dateStr = d.toLocaleDateString('id-ID', {day:'2-digit',month:'long',year:'numeric'}) + ' ' + d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
-    var itemsHtml = trx.items.map(function(it){
-      return '<div class="rline"><span>'+escapeHtml(it.name)+' x'+it.qty+'</span><span>'+rupiah(it.price*it.qty)+'</span></div>';
-    }).join('');
-    document.getElementById('receiptBody').innerHTML =
-      '<div class="rh"><div class="nm">Virgo Komputer</div><div class="sub">ATK &middot; Percetakan &middot; Perlengkapan</div><div class="sub">'+dateStr+'</div></div>'+
-      '<hr>' + itemsHtml + '<hr>' +
-      '<div class="rline" style="font-weight:800;"><span>Total</span><span>'+rupiah(trx.total)+'</span></div>'+
-      '<div class="rline"><span>Tunai</span><span>'+rupiah(trx.cash)+'</span></div>'+
-      '<div class="rline"><span>Kembalian</span><span>'+rupiah(trx.change)+'</span></div>';
+  // ---------- Receipt building & printing ----------
+  function padCenter(text, width){
+    text = String(text); if(text.length>=width) return text.slice(0,width);
+    var left = Math.floor((width-text.length)/2), right = width-text.length-left;
+    return ' '.repeat(left)+text+' '.repeat(right);
   }
+  function padLine(left, right, width){
+    left=String(left); right=String(right);
+    var space = width - left.length - right.length;
+    if(space<1){ var maxLeft = width-right.length-1; left = left.slice(0,Math.max(maxLeft,0)); space = width-left.length-right.length; }
+    return left + ' '.repeat(Math.max(space,1)) + right;
+  }
+  function buildReceiptText(trx){
+    var W = parseInt(state.settings.paperWidth,10)===80 ? 48 : 32;
+    var s = state.settings;
+    var d = new Date(trx.date);
+    var dateStr = d.toLocaleDateString('id-ID',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+    var lines = [];
+    lines.push(padCenter(s.storeName || 'Virgo Komputer', W));
+    if(s.address) lines.push(padCenter(s.address, W));
+    if(s.phone) lines.push(padCenter(s.phone, W));
+    lines.push('-'.repeat(W));
+    lines.push(padLine(dateStr, '', W));
+    lines.push('-'.repeat(W));
+    trx.items.forEach(function(it){
+      lines.push(it.name.length>W ? it.name.slice(0,W) : it.name);
+      var qtyPrice = it.qty+' x '+rupiah(it.price).replace('Rp ','');
+      lines.push(padLine(qtyPrice, rupiah(it.price*it.qty), W));
+    });
+    lines.push('-'.repeat(W));
+    if(trx.discount>0){
+      lines.push(padLine('Subtotal', rupiah(trx.subtotal), W));
+      lines.push(padLine('Diskon', '-'+rupiah(trx.discount), W));
+    }
+    lines.push(padLine('TOTAL', rupiah(trx.total), W));
+    lines.push(padLine(trx.method==='nontunai' ? 'Non-Tunai' : 'Tunai', rupiah(trx.cash), W));
+    if(trx.method!=='nontunai') lines.push(padLine('Kembali', rupiah(trx.change), W));
+    lines.push('-'.repeat(W));
+    lines.push(padCenter(s.footer || 'Terima kasih', W));
+    lines.push(''); lines.push('');
+    return lines.join('\n');
+  }
+  function nativeAvailable(){
+    try{ return typeof AndroidPOS !== 'undefined' && AndroidPOS.isAvailable && AndroidPOS.isAvailable(); }catch(e){ return false; }
+  }
+  window.onPrintResult = function(ok, msg){
+    toast(ok ? 'Struk berhasil dikirim ke printer' : 'Gagal mencetak: '+(msg||'periksa printer'));
+  };
+  function printTransaction(trx){
+    var text = buildReceiptText(trx);
+    if(nativeAvailable()){
+      if(!state.settings.printerAddress){ toast('Pilih printer Bluetooth dulu di menu Pengaturan'); return; }
+      try{ AndroidPOS.printText(state.settings.printerAddress, text); toast('Mengirim ke printer...'); }
+      catch(e){ toast('Gagal memanggil printer'); }
+    } else {
+      var w = window.open('', '_blank');
+      if(w){ w.document.write('<pre style="font-family:monospace; font-size:13px;">'+escapeHtml(text)+'</pre>'); w.document.close(); w.print(); }
+      else { window.print(); }
+    }
+  }
+  document.getElementById('printReceiptBtn').addEventListener('click', function(){
+    var trx = state.transactions[0];
+    if(trx) printTransaction(trx);
+  });
   document.getElementById('doneReceiptBtn').addEventListener('click', closeAllSheets);
+
+  function renderReceipt(trx){
+    document.getElementById('receiptBody').textContent = buildReceiptText(trx);
+    document.getElementById('printHint').textContent = nativeAvailable()
+      ? (state.settings.printerAddress ? 'Akan mencetak ke: '+state.settings.printerName : 'Pilih printer Bluetooth di menu Pengaturan agar bisa mencetak.')
+      : 'Cetak Bluetooth hanya tersedia di aplikasi Android. Di browser, tombol ini membuka dialog cetak biasa.';
+  }
 
   // ---------- Produk management ----------
   function renderProductList(){
@@ -896,21 +958,22 @@
       return;
     }
     list.forEach(function(p){
+      var low = isLow(p); var out = isOut(p);
       var row = document.createElement('div');
-      row.className = 'plist-row';
+      row.className = 'plist-row' + (low||out ? ' low' : '');
+      var sub = p.trackStock
+        ? (out ? '<span class="low">Stok habis</span>' : (low ? '<span class="low">Stok menipis: '+p.stock+' '+escapeHtml(p.unit)+'</span>' : 'Stok: '+p.stock+' '+escapeHtml(p.unit)))
+        : 'Jasa &middot; per '+escapeHtml(p.unit);
       row.innerHTML =
         '<span class="dot" style="background:'+CATS[p.cat]+'"></span>'+
-        '<div class="info"><div class="nm">'+escapeHtml(p.name)+'</div><div class="sub">'+ (p.trackStock ? 'Stok: '+p.stock+' '+escapeHtml(p.unit) : 'Jasa &middot; per '+escapeHtml(p.unit)) +'</div></div>'+
+        '<div class="info"><div class="nm">'+escapeHtml(p.name)+'</div><div class="sub">'+sub+'</div></div>'+
         '<div class="price">'+rupiah(p.price)+'</div>'+
         '<button class="edit">&#9998;</button>';
       row.querySelector('.edit').addEventListener('click', function(){ openProductForm(p.id); });
       wrap.appendChild(row);
     });
   }
-  document.getElementById('searchInputProduk').addEventListener('input', function(e){
-    state.searchProduk = e.target.value;
-    renderProductList();
-  });
+  document.getElementById('searchInputProduk').addEventListener('input', function(e){ state.searchProduk = e.target.value; renderProductList(); });
 
   function toggleStockField(){
     var track = document.getElementById('fTrackStock').checked;
@@ -926,6 +989,7 @@
     document.getElementById('fCategory').value = p ? p.cat : 'ATK';
     document.getElementById('fPrice').value = p ? p.price : '';
     document.getElementById('fUnit').value = p ? p.unit : 'pcs';
+    document.getElementById('fBarcode').value = p ? (p.barcode||'') : '';
     document.getElementById('fTrackStock').checked = p ? p.trackStock : true;
     document.getElementById('fStock').value = p ? p.stock : '';
     document.getElementById('deleteProductBtn').style.display = p ? 'block' : 'none';
@@ -933,12 +997,16 @@
     openSheet('sheetProduct');
   }
   document.getElementById('addProdukBtn').addEventListener('click', function(){ openProductForm(null); });
+  document.getElementById('scanForFormBtn').addEventListener('click', function(){
+    startScanner('form');
+  });
 
   document.getElementById('saveProductBtn').addEventListener('click', function(){
     var name = document.getElementById('fName').value.trim();
     var price = parseFloat(document.getElementById('fPrice').value);
     var cat = document.getElementById('fCategory').value;
     var unit = document.getElementById('fUnit').value.trim() || 'pcs';
+    var barcode = document.getElementById('fBarcode').value.trim();
     var trackStock = document.getElementById('fTrackStock').checked;
     var stock = parseInt(document.getElementById('fStock').value,10);
     if(!name){ toast('Nama produk wajib diisi'); return; }
@@ -947,17 +1015,15 @@
 
     if(state.editingProductId){
       var p = state.products.find(function(pp){ return pp.id===state.editingProductId; });
-      p.name=name; p.price=price; p.cat=cat; p.unit=unit; p.trackStock=trackStock; p.stock=trackStock?stock:0;
+      p.name=name; p.price=price; p.cat=cat; p.unit=unit; p.barcode=barcode; p.trackStock=trackStock; p.stock=trackStock?stock:0;
       toast('Produk diperbarui');
     } else {
-      state.products.push({id:uid(), name:name, cat:cat, price:price, unit:unit, trackStock:trackStock, stock:trackStock?stock:0});
+      state.products.push({id:uid(), name:name, cat:cat, price:price, unit:unit, barcode:barcode, trackStock:trackStock, stock:trackStock?stock:0});
       toast('Produk ditambahkan');
     }
     saveProducts();
     closeAllSheets();
-    renderProductList();
-    renderChips();
-    renderGrid();
+    renderProductList(); renderChips(); renderGrid(); renderLowStockBanner();
   });
 
   document.getElementById('deleteProductBtn').addEventListener('click', function(){
@@ -966,8 +1032,7 @@
     state.products = state.products.filter(function(p){ return p.id!==state.editingProductId; });
     saveProducts();
     closeAllSheets();
-    renderProductList();
-    renderGrid();
+    renderProductList(); renderGrid(); renderLowStockBanner();
     toast('Produk dihapus');
   });
 
@@ -989,9 +1054,7 @@
     Object.keys(groups).forEach(function(key){
       var section = document.createElement('div');
       section.className = 'daygroup';
-      var h = document.createElement('h3');
-      h.textContent = key;
-      section.appendChild(h);
+      var h = document.createElement('h3'); h.textContent = key; section.appendChild(h);
       groups[key].forEach(function(t){
         var d = new Date(t.date);
         var timeStr = d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
@@ -1001,13 +1064,16 @@
         card.innerHTML =
           '<div class="top"><span class="time">'+timeStr+'</span><span class="amt">'+rupiah(t.total)+'</span></div>'+
           '<div class="items">'+escapeHtml(itemsStr)+'</div>'+
-          '<div class="actions"><button class="btn-danger-outline" data-id="'+t.id+'">Hapus</button></div>';
-        card.querySelector('[data-id]').addEventListener('click', function(){
+          (t.method==='nontunai' ? '<span class="tag">Non-Tunai</span>' : '')+
+          '<div class="actions">'+
+            '<button class="btn-mini" data-print="'+t.id+'">🖨️ Cetak</button>'+
+            '<button class="btn-danger-outline" data-del="'+t.id+'">Hapus</button>'+
+          '</div>';
+        card.querySelector('[data-print]').addEventListener('click', function(){ printTransaction(t); });
+        card.querySelector('[data-del]').addEventListener('click', function(){
           if(!confirm('Hapus catatan transaksi ini? Stok tidak akan dikembalikan otomatis.')) return;
           state.transactions = state.transactions.filter(function(x){ return x.id!==t.id; });
-          saveTransactions();
-          renderHistory();
-          toast('Transaksi dihapus');
+          saveTransactions(); renderHistory(); toast('Transaksi dihapus');
         });
         section.appendChild(card);
       });
@@ -1030,7 +1096,6 @@
     document.getElementById('statTrxToday').textContent = todayTrx.length;
     document.getElementById('statAvg').textContent = rupiah(avg);
 
-    // 7-day bar chart
     var days = [];
     for(var i=6;i>=0;i--){
       var d = new Date(now); d.setDate(now.getDate()-i);
@@ -1048,13 +1113,24 @@
       barsWrap.appendChild(col);
     });
 
-    // top products (30 days)
+    var restockWrap = document.getElementById('restockList');
+    var restock = state.products.filter(function(p){ return isLow(p)||isOut(p); }).sort(function(a,b){ return a.stock-b.stock; });
+    restockWrap.innerHTML = '';
+    if(restock.length===0){
+      restockWrap.innerHTML = '<div class="empty" style="padding:20px 0;"><p>Semua stok produk masih aman.</p></div>';
+    } else {
+      restock.forEach(function(p){
+        var row = document.createElement('div');
+        row.className = 'restockrow';
+        row.innerHTML = '<div class="nm">'+escapeHtml(p.name)+'</div><div class="qy '+(isOut(p)?'out':'low')+'">'+(isOut(p)?'Habis':p.stock+' '+escapeHtml(p.unit))+'</div>';
+        restockWrap.appendChild(row);
+      });
+    }
+
     var cutoff = new Date(now); cutoff.setDate(now.getDate()-30);
     var tally = {};
     state.transactions.filter(function(t){ return new Date(t.date) >= cutoff; }).forEach(function(t){
-      t.items.forEach(function(it){
-        tally[it.name] = (tally[it.name]||0) + it.qty;
-      });
+      t.items.forEach(function(it){ tally[it.name] = (tally[it.name]||0) + it.qty; });
     });
     var top = Object.keys(tally).map(function(k){ return {name:k, qty:tally[k]}; }).sort(function(a,b){return b.qty-a.qty;}).slice(0,5);
     var topWrap = document.getElementById('topProducts');
@@ -1071,11 +1147,192 @@
     }
   }
 
+  // ---------- Settings ----------
+  document.getElementById('settingsBtn').addEventListener('click', function(){
+    var s = state.settings;
+    document.getElementById('stName').value = s.storeName;
+    document.getElementById('stAddress').value = s.address;
+    document.getElementById('stPhone').value = s.phone;
+    document.getElementById('stFooter').value = s.footer;
+    document.getElementById('stPaperWidth').value = s.paperWidth;
+    document.getElementById('stAutoPrint').checked = s.autoPrint;
+    document.getElementById('stLowStock').value = s.lowStockThreshold;
+    renderPrinterList();
+    document.getElementById('backupText').value = JSON.stringify({products:state.products, transactions:state.transactions, settings:state.settings});
+    openSheet('sheetSettings');
+  });
+
+  function renderPrinterList(){
+    var hint = document.getElementById('printerHint');
+    var wrap = document.getElementById('printerList');
+    wrap.innerHTML = '';
+    if(!nativeAvailable()){
+      hint.textContent = 'Fitur printer Bluetooth hanya tersedia di aplikasi Android (APK), bukan di browser biasa.';
+      return;
+    }
+    hint.textContent = 'Sambungkan (pairing) printer 58mm Anda lebih dulu lewat menu Bluetooth HP, lalu pilih dari daftar di bawah ini.';
+    try{
+      var list = JSON.parse(AndroidPOS.getPairedPrinters() || '[]');
+      if(list.length===0){
+        wrap.innerHTML = '<p class="muted">Belum ada perangkat Bluetooth yang dipasangkan. Buka Pengaturan Bluetooth HP untuk memasangkan printer terlebih dahulu.</p>';
+        return;
+      }
+      list.forEach(function(d){
+        var row = document.createElement('div');
+        row.className = 'printer-row' + (state.settings.printerAddress===d.address ? ' selected' : '');
+        row.innerHTML = '<div><div class="pn">'+escapeHtml(d.name)+'</div><div class="pa">'+escapeHtml(d.address)+'</div></div>';
+        row.addEventListener('click', function(){
+          state.settings.printerAddress = d.address; state.settings.printerName = d.name;
+          renderPrinterList(); toast('Printer dipilih: '+d.name);
+        });
+        wrap.appendChild(row);
+      });
+    }catch(e){
+      wrap.innerHTML = '<p class="muted">Gagal membaca daftar printer. Pastikan izin Bluetooth sudah diaktifkan untuk aplikasi ini.</p>';
+    }
+  }
+  document.getElementById('refreshPrintersBtn').addEventListener('click', function(){
+    if(nativeAvailable() && AndroidPOS.requestPermission){ try{ AndroidPOS.requestPermission(); }catch(e){} }
+    renderPrinterList();
+  });
+  document.getElementById('testPrintBtn').addEventListener('click', function(){
+    var demo = {
+      date: new Date().toISOString(),
+      items: [{name:'Contoh Produk', price:5000, qty:1, unit:'pcs'}],
+      subtotal:5000, discount:0, total:5000, method:'tunai', cash:5000, change:0
+    };
+    printTransaction(demo);
+  });
+
+  document.getElementById('saveSettingsBtn').addEventListener('click', function(){
+    state.settings.storeName = document.getElementById('stName').value.trim() || 'Virgo Komputer';
+    state.settings.address = document.getElementById('stAddress').value.trim();
+    state.settings.phone = document.getElementById('stPhone').value.trim();
+    state.settings.footer = document.getElementById('stFooter').value.trim() || 'Terima kasih';
+    state.settings.paperWidth = parseInt(document.getElementById('stPaperWidth').value,10);
+    state.settings.autoPrint = document.getElementById('stAutoPrint').checked;
+    var lst = parseInt(document.getElementById('stLowStock').value,10);
+    state.settings.lowStockThreshold = isNaN(lst) ? 5 : Math.max(0,lst);
+    saveSettings();
+    document.getElementById('topSub').textContent = state.settings.storeName===  'Virgo Komputer' ? 'ATK · Percetakan · Perlengkapan' : state.settings.storeName;
+    renderGrid(); renderLowStockBanner(); renderProductList();
+    toast('Pengaturan disimpan');
+    closeAllSheets();
+  });
+
+  document.getElementById('copyBackupBtn').addEventListener('click', function(){
+    var ta = document.getElementById('backupText');
+    ta.select();
+    try{ document.execCommand('copy'); toast('Cadangan disalin ke clipboard'); }
+    catch(e){
+      if(navigator.clipboard){ navigator.clipboard.writeText(ta.value).then(function(){ toast('Cadangan disalin ke clipboard'); }); }
+      else { toast('Gagal menyalin, salin manual dari kotak teks'); }
+    }
+  });
+  document.getElementById('restoreBtn').addEventListener('click', function(){
+    var raw = document.getElementById('restoreText').value.trim();
+    if(!raw){ toast('Tempel teks cadangan terlebih dahulu'); return; }
+    var data;
+    try{ data = JSON.parse(raw); }catch(e){ toast('Format teks cadangan tidak valid'); return; }
+    if(!data || !Array.isArray(data.products) || !Array.isArray(data.transactions)){
+      toast('Format teks cadangan tidak valid'); return;
+    }
+    if(!confirm('Ini akan mengganti seluruh data produk & transaksi saat ini. Lanjutkan?')) return;
+    state.products = data.products; state.transactions = data.transactions;
+    state.settings = data.settings ? Object.assign(defaultSettings(), data.settings) : state.settings;
+    saveProducts(); saveTransactions(); saveSettings();
+    renderGrid(); renderChips(); renderProductList(); renderHistory(); renderReport(); renderLowStockBanner();
+    document.getElementById('restoreText').value='';
+    toast('Data berhasil dipulihkan');
+    closeAllSheets();
+  });
+
+  // ---------- Barcode scanning ----------
+  var barcodeSupported = 'BarcodeDetector' in window;
+  var detector = null;
+  if(barcodeSupported){ try{ detector = new window.BarcodeDetector({formats:['ean_13','ean_8','code_128','code_39','upc_a','upc_e','qr_code']}); }catch(e){ barcodeSupported=false; } }
+
+  function findByBarcode(code){
+    code = String(code).trim();
+    return state.products.find(function(p){ return p.barcode && String(p.barcode).trim()===code; });
+  }
+  function handleScannedCode(code){
+    if(state.scanTarget==='form'){
+      document.getElementById('fBarcode').value = code;
+      stopScanner(); document.getElementById('sheetScan').classList.remove('show'); openSheet('sheetProduct');
+      toast('Barcode terbaca: '+code);
+      return;
+    }
+    var p = findByBarcode(code);
+    if(p){
+      if(isOut(p)){ toast(p.name+' — stok habis'); return; }
+      addToCart(p);
+      closeAllSheets();
+    } else {
+      toast('Barcode "'+code+'" tidak ditemukan di daftar produk');
+      document.getElementById('scanStatus').textContent = 'Tidak ditemukan: '+code+' — coba lagi atau tambahkan produk baru dengan barcode ini.';
+    }
+  }
+  window.onBarcodeScanned = function(code){ if(code) handleScannedCode(code); };
+
+  function startScanner(target){
+    state.scanTarget = target || 'kasir';
+    document.getElementById('manualBarcodeInput').value = '';
+    document.getElementById('scanStatus').textContent = 'Arahkan kamera ke barcode produk';
+    openSheet('sheetScan');
+
+    if(barcodeSupported && navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(function(stream){
+        state.scanStream = stream;
+        var video = document.getElementById('scanVideo');
+        video.srcObject = stream;
+        video.play();
+        var loop = function(){
+          if(!state.scanStream) return;
+          detector.detect(video).then(function(codes){
+            if(codes && codes.length>0){ handleScannedCode(codes[0].rawValue); }
+            else { state.scanRAF = requestAnimationFrame(loop); }
+          }).catch(function(){ state.scanRAF = requestAnimationFrame(loop); });
+        };
+        state.scanRAF = requestAnimationFrame(loop);
+      }).catch(function(err){
+        document.getElementById('scanStatus').textContent = 'Kamera tidak dapat diakses. Pastikan izin kamera diaktifkan, atau ketik barcode secara manual di bawah.';
+        tryNativeScan();
+      });
+    } else {
+      document.getElementById('scanStatus').textContent = 'Pemindaian kamera langsung tidak didukung di browser ini. Mencoba pemindai aplikasi...';
+      tryNativeScan();
+    }
+  }
+  function tryNativeScan(){
+    if(nativeAvailable() && typeof AndroidPOS.scanBarcode === 'function'){
+      document.getElementById('scanStatus').textContent = 'Membuka pemindai kamera aplikasi...';
+      try{ AndroidPOS.scanBarcode(); }catch(e){ document.getElementById('scanStatus').textContent = 'Pemindai tidak tersedia. Ketik barcode secara manual.'; }
+    } else {
+      document.getElementById('scanStatus').textContent = 'Pemindaian kamera tidak tersedia. Ketik barcode secara manual di bawah.';
+    }
+  }
+  function stopScanner(){
+    if(state.scanRAF){ cancelAnimationFrame(state.scanRAF); state.scanRAF=null; }
+    if(state.scanStream){ state.scanStream.getTracks().forEach(function(t){ t.stop(); }); state.scanStream=null; }
+    var video = document.getElementById('scanVideo'); if(video) video.srcObject = null;
+  }
+  document.getElementById('scanBtnKasir').addEventListener('click', function(){ startScanner('kasir'); });
+  document.getElementById('scanCloseBtn').addEventListener('click', stopScanner);
+  document.getElementById('manualBarcodeBtn').addEventListener('click', function(){
+    var v = document.getElementById('manualBarcodeInput').value.trim();
+    if(v) handleScannedCode(v);
+  });
+  document.getElementById('manualBarcodeInput').addEventListener('keydown', function(e){
+    if(e.key==='Enter'){ var v=e.target.value.trim(); if(v) handleScannedCode(v); }
+  });
+
   // ---------- Init ----------
   loadData();
   renderChips();
   renderGrid();
   renderCartBar();
+  renderLowStockBanner();
 
 })();
 </script>

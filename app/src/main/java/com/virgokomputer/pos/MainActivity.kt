@@ -171,7 +171,9 @@ class MainActivity : AppCompatActivity() {
                         ?: throw IllegalStateException("Perangkat ini tidak mendukung Bluetooth")
                     val device = adapter.getRemoteDevice(address)
                     socket = device.createRfcommSocketToServiceRecord(SPP_UUID)
-                    adapter.cancelDiscovery()
+                    // Note: no adapter.cancelDiscovery() here — that call requires the extra
+                    // BLUETOOTH_SCAN permission on Android 12+, and it isn't needed since we
+                    // only ever connect to an already-paired device, never run discovery.
                     socket.connect()
                     val out: OutputStream = socket.outputStream
                     out.write(byteArrayOf(0x1B, 0x40)) // ESC @  — initialize printer
